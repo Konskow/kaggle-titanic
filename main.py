@@ -40,12 +40,13 @@ X_test = pd.get_dummies(X_test, columns=['Cabin', 'Embarked', 'Sex', 'Pclass'])
 X_train = X_train.drop(['Cabin_False', 'Embarked_S', 'Sex_female', 'Pclass_3'], axis=1)
 X_test = X_test.drop(['Cabin_False', 'Embarked_S', 'Sex_female', 'Pclass_3'], axis=1)
 
+X_train = X_train[['Age', 'Sex_male', 'Pclass_1', 'Pclass_2', 'Fare', 'Parch']]
+X_test = X_test[['Age', 'Sex_male', 'Pclass_1', 'Pclass_2', 'Fare', 'Parch']]
 #feature scaling
 from sklearn.preprocessing import MinMaxScaler
 scaler = MinMaxScaler()
 X_train = pd.DataFrame(scaler.fit_transform(X_train), columns=X_train.columns)
 X_test = pd.DataFrame(scaler.fit_transform(X_test), columns=X_test.columns)
-
 
 X_train = X_train.values
 X_test = X_test.values
@@ -64,7 +65,7 @@ classifier = LogisticRegression(random_state=42)
 #classifier = GaussianNB()
 
 #from sklearn.ensemble import RandomForestClassifier
-#classifier = RandomForestClassifier(n_estimators=19, criterion='entropy', random_state=42)
+#classifier = RandomForestClassifier(n_estimators=22, criterion='entropy', random_state=42)
 
 
 # metrics
